@@ -1,19 +1,19 @@
 from django.urls import path
 from . import views
 
-app_name = 'learning_logs' # название приложения, к которому принадлежит данный urls
+app_name = 'learning_logs' # application, which this url belongs to
 
 urlpatterns = [
-    # Домашняя страница
+    # Home page
     path('', views.index, name='index'),
-    # Страница со списком всех тем
+    # Topic list page
     path('topics/', views.topics, name='topics'),
-    # Страница с подробной информацией по каждой теме
+    # Topic page
     path('topics/<int:topic_id>/', views.topic, name='topic'),
-    # Страница добавления новой темы
+    # New topic adding page
     path('new_topic/', views.new_topic, name='new_topic'),
-    # Страница добавления новой записи
+    # New entry adding page
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
-    # Страница редактирования записи
+    # Entry editing page
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 ]

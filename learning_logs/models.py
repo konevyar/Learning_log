@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Topic(models.Model):
-    """Тема, изучаемая пользователем."""
+    """Topic being studied by the user."""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -12,8 +12,8 @@ class Topic(models.Model):
         return self.text
 
 class Entry(models.Model):
-    """Запись по теме."""
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) # установка зависимости от модели Topic
+    """Entry on Topic."""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) # setup dependence from model Topic
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -21,7 +21,7 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
 
     def __str__(self):
-        """Представление записи в виде текстого превью не более 50 символов."""
+        """Presenting Entry as a text preview of up to 50 characters."""
         if len(self.text) < 50:
             return self.text
         else:

@@ -1,20 +1,20 @@
-# Формы проекта
+# Project forms
 
 from django import forms
-from .models import Topic, Entry # Импорт моделей для создания форм на их основе
+from .models import Topic, Entry # Importing models as base for forms creation
 
 class TopicForm(forms.ModelForm):
     class Meta: 
-        # Указание на модель, на которой основана форма
+        # Pointing at model, on which form is based
         model = Topic
-        # Какие поля будут в форме
-        fields = ['text'] # Создание текстового поля в форме
-        labels = {'text': ''} #  Указание не создавать подпись для текстового поля
+        # Fiels in new form:
+        fields = ['text'] # Text field
+        labels = {'text': ''} #  Insctruction not to create signature for text field
         
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
         fields = ['text']
         labels = {'text': 'Entry:'}
-        # HTML-виджет с шириной текстового поля 80 символов
+        # HTML-widget with a text field width of 80 characters
         widget = {'text': forms.Textarea(attrs={'cols': 80})}

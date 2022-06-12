@@ -5,8 +5,8 @@ from . import views
 
 app_name = 'users'
 urlpatterns = [
-    # Включение URL авторизации по умолчанию (встроенное в Django представление)
+    # Turning on URL authorization by default (build-in Django view)
     path('', include('django.contrib.auth.urls')),
-    # Страница регистрации пользователя
+    # User registration page
     path('register/', views.register, name='register'),
 ]
