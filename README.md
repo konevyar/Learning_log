@@ -1,5 +1,5 @@
 # Learning_log
- Web-application for taking notes during studies. Created with Django framework, [deployed to Heroku](https://study-journal31.herokuapp.com/)
+ Web-application for taking notes during studies. Created with Django framework, [deployed to Heroku](https://study-journal31.herokuapp.com/).<br>
  Allows you to:
 - register a user account;
 - create topics;
