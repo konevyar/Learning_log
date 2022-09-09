@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Topic(models.Model):
     """Topic being studied by the user."""
     text = models.CharField(max_length=200)
@@ -11,9 +12,10 @@ class Topic(models.Model):
         """Представление темы в виде её названия."""
         return self.text
 
+
 class Entry(models.Model):
     """Entry on Topic."""
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) # setup dependence from model Topic
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)  # setup dependence from model Topic
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
