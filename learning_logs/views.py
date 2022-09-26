@@ -4,16 +4,17 @@ from .forms import TopicForm, EntryForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
+
 def index(request):
-    """Home page."""
     return render(request, 'learning_logs/index.html')
+
 
 @login_required
 def topics(request):
-    """List of topics."""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
+
 
 @login_required
 def topic(request, topic_id):
@@ -25,16 +26,14 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
+
 @login_required
 def new_topic(request):
-    """Creating new topic."""
-    if request.method != 'POST':
-        # If user sent blank form, he'll get blank form in return
+    if request.method != 'POST':  # If user sent blank form, he'll get blank form in return
         form = TopicForm()
-    else:
-        # If user sent filled form, data will be processed
+    else:  # If user sent filled form, data will be processed
         form = TopicForm(data=request.POST)
-        if form.is_valid(): # Checking required fields
+        if form.is_valid():  # Checking required fields
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
             new_topic.save()
@@ -43,6 +42,7 @@ def new_topic(request):
     # Return of blank form
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
+
 
 @login_required
 def new_entry(request, topic_id):
@@ -69,18 +69,16 @@ def new_entry(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
+
 @login_required
 def edit_entry(request, entry_id):
-    """Editing of entry."""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
     check_topic_owner(topic.owner, request)
     
     if request.method != 'POST':
-        # Initial query; form is filled with the data of the current record
         form = EntryForm(instance=entry)
     else:
-        # Sending POST; processing entered data
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
@@ -89,8 +87,8 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
+
 def check_topic_owner(owner, request):
     """Checking owner of the topic."""
     if owner != request.user:
         raise Http404
-

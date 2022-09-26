@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'learning_logs' # application, which this url belongs to
+app_name = 'learning_logs'  # application, which this url belongs to
 
 urlpatterns = [
     # Home page

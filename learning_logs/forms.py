@@ -1,16 +1,18 @@
 # Project forms
 
 from django import forms
-from .models import Topic, Entry # Importing models as base for forms creation
+from .models import Topic, Entry  # Importing models as base for forms creation
+
 
 class TopicForm(forms.ModelForm):
     class Meta: 
         # Pointing at model, on which form is based
         model = Topic
-        # Fiels in new form:
-        fields = ['text'] # Text field
-        labels = {'text': ''} #  Insctruction not to create signature for text field
-        
+        # Fields in new form:
+        fields = ['text']
+        labels = {'text': ''}
+
+
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry

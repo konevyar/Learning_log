@@ -9,13 +9,12 @@ class Topic(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        """Представление темы в виде её названия."""
         return self.text
 
 
 class Entry(models.Model):
     """Entry on Topic."""
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)  # setup dependence from model Topic
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)  # set dependence from model Topic
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -23,7 +22,6 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
 
     def __str__(self):
-        """Presenting Entry as a text preview of up to 50 characters."""
         if len(self.text) < 50:
             return self.text
         else:
