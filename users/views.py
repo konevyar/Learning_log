@@ -3,7 +3,6 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
 def register(request):
-    """New user registration."""
     if request.method != 'POST':
         # Return empty form
         form = UserCreationForm()
@@ -17,6 +16,6 @@ def register(request):
             login(request, new_user)
             return redirect('learning_logs:index')
     
-    # Return empty form in respone to invalid data
+    # Return empty form in response to invalid data
     context = {'form': form}
     return render(request, 'registration/register.html', context)
